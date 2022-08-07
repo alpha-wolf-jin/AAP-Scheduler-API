@@ -219,12 +219,17 @@ Configure the new Credentail for quay registry
 
 **Lanch and fill survey for job template `scheduler`**
 
+Input value
+```
+report file: medc-report-07-Aug-2022-14-15
+Year: 2022       Month: 08        Date: 7
+hour: 14         Minute: 15       Second: 00
+```
 ![Once Login Azure portal](images/scheduler-05.png)
 
-
+Out put of the job template `scheduler`
 ![Once Login Azure portal](images/scheduler-06.png)
 
+**New schdule added as required**
+![Once Login Azure portal](images/scheduler-07.png)
 
-![Once Login Azure portal](images/scheduler-05.png)
-
-![Once Login Azure portal](images/scheduler-05.png)
