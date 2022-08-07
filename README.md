@@ -233,3 +233,8 @@ Out put of the job template `scheduler`
 **New schdule added as required**
 ![Once Login Azure portal](images/scheduler-07.png)
 
+**The job started at scheduled time**
+![Once Login Azure portal](images/scheduler-08.png)
+
+**The paramteres values are right in `patch`, which received from `scheduler`**
+![Once Login Azure portal](images/scheduler-09.png)
