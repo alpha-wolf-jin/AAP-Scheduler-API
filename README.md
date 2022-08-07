@@ -238,6 +238,17 @@ Out put of the job template `scheduler`
 **The paramteres values are right in `patch`, which received from `scheduler`**
 ![Once Login Azure portal](images/scheduler-09.png)
 
+## Further
+
+The input for job tempalte `scheduler` can be more complicated, like:
+```
+2022-08-09 22:15:00  server1,server2,server3
+2022-08-10 22:15:00  server1,server2,server3
+2022-08-11 22:15:00  server1,server2,server3
+```
+In this way, AAP can take certain schedule tools role.
+
+
 ## Challeges `how to delete used schedules?`
 
 Failed to find command or REST API to auto delete the used schedules.
