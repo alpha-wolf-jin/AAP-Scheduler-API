@@ -216,3 +216,15 @@ Configure the new Credentail for quay registry
 
 - can schudle the ad-hoc patch task
 
+
+**Lanch and fill survey for job template `scheduler`**
+
+![Once Login Azure portal](images/scheduler-05.png)
+
+
+![Once Login Azure portal](images/scheduler-06.png)
+
+
+![Once Login Azure portal](images/scheduler-05.png)
+
+![Once Login Azure portal](images/scheduler-05.png)
