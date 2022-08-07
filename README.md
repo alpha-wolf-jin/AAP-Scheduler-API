@@ -19,15 +19,27 @@ git add . ; git commit -a -m "update README" ; git push -u origin main
 
 The customer has a batch of VMs for patching. These VMs has different 
 
-approved maintance windows.
+approved maintance windows for ptaching. And patch needs some pre & post works, LB, 
+
+cluster, verification and so on, which are beyond the individule server patch task. 
+
+It is orchestration work. This use case requests this orchestration work can be 
+
+dynacmically scheduled to different time windows.
+
 
 The modules `win_scheduled_task` & `cron` have schedule function.
 
 They are suitable for individual host schedule, not for orchestration 
 
-work schedule. Here we try to explore the `schedules` function in job 
+work schedule. And AAP is more for orchestration and configuration
 
-temalate for such dynamic orchestrtion task scheduling.
+management, not desgined for schedule tools.
+
+
+Here we try to explore the `schedules` function in job 
+
+template for such dynamic orchestrtion task scheduling.
 
 
 
