@@ -48,7 +48,6 @@ template for such dynamic orchestrtion task scheduling.
 - `patching` job template for patching task
 - `scheduler` job template to configure `Schedules` for `patching` job template 
 
-## Challeges
 
 # Customize the execution image
 
@@ -238,3 +237,5 @@ Out put of the job template `scheduler`
 
 **The paramteres values are right in `patch`, which received from `scheduler`**
 ![Once Login Azure portal](images/scheduler-09.png)
+
+## Challeges `how to delete used schedules?`
