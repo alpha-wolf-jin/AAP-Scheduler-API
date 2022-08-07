@@ -56,6 +56,24 @@ from the API call from job templet `scheduler`, both vars are in survey form.
 
 ![Once Login Azure portal](images/scheduler-02.png)
 
+
+**`patch.yaml` playbook**
+```
+# cat patch.yaml 
+- name: Patch
+  hosts: all
+  vars:
+
+  tasks:
+    - name: Report File
+      debug:
+        msg: "{{ report_file | default('Hello World!') }}"
+
+    - name: Schedule Name
+      debug:
+        msg: "{{ delete_schedule | default('Hello World!') }}"
+```
+
 ### Job Temlate `scheduler`
 
 Configure the new Credentail for quay registry
