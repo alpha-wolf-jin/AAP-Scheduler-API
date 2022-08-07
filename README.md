@@ -25,7 +25,11 @@ The modules `win_scheduled_task` & `cron` have schedule function.
 
 They are suitable for individual host schedule, not for orchestration 
 
-work schedule.
+work schedule. Here we try to explore the `schedules` function in job 
+
+temalate for such dynamic orchestrtion task scheduling.
+
+
 
 ## Explore Solution
 
@@ -195,3 +199,8 @@ Configure the new Credentail for quay registry
     register: result
 
 ```
+
+# Verification
+
+- can schudle the ad-hoc patch task
+
