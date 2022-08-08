@@ -77,7 +77,11 @@ from the API call from job templet `scheduler`, both vars are in survey form.
 # cat patch.yaml 
 - name: Patch
   hosts: all
+
   vars:
+    app_ip: 192.168.122.31
+    user_id: 1
+    job_template_id: 9
 
   tasks:
     - name: Report File
@@ -87,6 +91,66 @@ from the API call from job templet `scheduler`, both vars are in survey form.
     - name: Schedule Name
       debug:
         msg: "{{ delete_schedule | default('Hello World!') }}"
+
+    - name: retrieve the AAP Token
+      uri:
+        url: https://{{ app_ip }}/api/v2/users/{{ user_id }}/personal_tokens/
+        user: admin
+        password: redhat
+        method: POST
+        force_basic_auth: yes
+        headers:
+          Content-Type: application/json
+        return_content: yes
+        validate_certs: no
+        status_code: [200, 201]
+        body_format: json
+        body:
+          extra_vars:
+            description: "Tower CLI"
+            application: null
+            scope: write
+      register: result
+
+    - set_fact:
+        token: "{{ result['json']['token'] }}"
+
+    - name: Collect all schedules' info
+      uri:
+        url: https://{{ app_ip }}/api/v2/schedules/
+        method: GET
+        headers:
+          Authorization: "Bearer {{ token }}"
+        return_content: yes
+        validate_certs: no
+        status_code: [200, 201]
+        body_format: json
+      register: result
+
+    - name: Extract schedule ID
+      register: result_01
+      args:
+        stdin: |
+          for schedule in {{ result.json.results }}:
+            if schedule['name'] == "{{ delete_schedule }}":
+              print(schedule['id'])
+      command: /usr/bin/python3
+
+    - name: Delete used schedule
+      uri:
+        url: https://{{ app_ip }}/api/v2/schedules/{{ result_01.stdout }}/
+        method: DELETE
+        headers:
+          Authorization: "Bearer {{ token }}"
+        return_content: yes
+        validate_certs: no
+        status_code: [200, 201, 204]
+        body_format: json
+        body:
+          extra_vars:
+            id: "{{ result_01.stdout }}"
+      register: result
+
 ```
 
 ### Job Temlate `scheduler`
@@ -249,5 +313,36 @@ The input for job tempalte `scheduler` can be more complicated, like:
 In this way, AAP can take certain schedule tools role.
 
 
-## how to delete used schedules?
+## CleanUP schedules: how to delete used schedules?
+
+**It is at the end of the playbook `patch.yaml`**
+
+```
+# cat patch.yaml 
+...
+    - name: Extract schedule ID
+      register: result_01
+      args:
+        stdin: |
+          for schedule in {{ result.json.results }}:
+            if schedule['name'] == "{{ delete_schedule }}":
+              print(schedule['id'])
+      command: /usr/bin/python3
+
+    - name: Delete used schedule
+      uri:
+        url: https://{{ app_ip }}/api/v2/schedules/{{ result_01.stdout }}/
+        method: DELETE
+        headers:
+          Authorization: "Bearer {{ token }}"
+        return_content: yes
+        validate_certs: no
+        status_code: [200, 201, 204]
+        body_format: json
+        body:
+          extra_vars:
+            id: "{{ result_01.stdout }}"
+      register: result
+
+```
 
