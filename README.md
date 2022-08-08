@@ -249,6 +249,5 @@ The input for job tempalte `scheduler` can be more complicated, like:
 In this way, AAP can take certain schedule tools role.
 
 
-## Challeges `how to delete used schedules?`
+## how to delete used schedules?
 
-Failed to find command or REST API to auto delete the used schedules.
